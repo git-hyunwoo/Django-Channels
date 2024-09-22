@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webscoket Echo</title>
+</head>
+<body>
+    Websocket Echo...
+    <script>
+        const ws = new WebSocket("ws://localhost:8000/ws/echo/");
+
+        ws.onopen = () => {
+            console.log("Accessed to Server");
+        };
+
+        ws.onmessage = (event) => {
+            const message = event.data;
+            console.log("Message recieved : ", message);
+        };
+
+        ws.onerror = () => {
+            console.error("Websocket Error");
+        }
+
+        ws.onclose = (event) => {
+            if(event.wasClean){
+                console.log("Closed by ws.close()");
+            }else{
+                console.log("Closed by Websocket ERROR");
+            }
+        };
+    </script>
+</body>
+</html>
