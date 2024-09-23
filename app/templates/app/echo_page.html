@@ -15,8 +15,9 @@
         };
 
         ws.onmessage = (event) => {
-            const message = event.data;
-            console.log("Message recieved : ", message);
+            const json_string = event.data;
+            const obj = JSON.parse(json_string);
+            console.log("Message recieved : ", obj);
         };
 
         ws.onerror = () => {
